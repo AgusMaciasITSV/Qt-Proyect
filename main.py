@@ -1,15 +1,22 @@
 import sys
 from PySide2.QtWidgets import QMainWindow, QApplication
 
-from su_archivo_convertido_desde_ui import nombre_de_la_clase_en_el_archivo_convertido_de_ui
+from MMenu.mainMenu import Ui_MainWindow as MenuWindow
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = nombre_de_la_clase_en_el_archivo_convertido_de_ui()
+        self.ui = MenuWindow()
         self.ui.setupUi(self)
+    def openForm():
+        pass
+    
+    def openLists():
+        pass
 
+    def confirmExit():
+        pass
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
