@@ -2,8 +2,53 @@ import sys
 
 from PyQt5.QtCore import QCoreApplication
 from PySide2.QtWidgets import QMainWindow, QApplication, QMessageBox
+import json
+from datetime import datetime
 
 from formpro import Ui_form
+from tabla1 import Ui_tabla
+
+
+class Ui_tabla(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_tabla()
+        self.ui.setupUi(self)
+
+
+class Persona:
+    def __init__(self, nombre="", apellido="", dni=0, fecha=0, ciudad="", vacuna=""):
+        super(Formwindow).__init__()
+        self.nombre = nombre
+        self.apellido = apellido
+        self.dni = dni
+        self.fecha = fecha
+        self.ciudad = ciudad
+        self.ciudad = ciudad
+        self.vacuna = vacuna
+        self.vacunados = [
+            {
+                'nombre': 'h',
+                'apellido': 'Sanchez',
+                'documento': '123123123'
+            }
+        ]
+
+    def nueva(self):
+        data = {}
+        data["persona"] = []
+
+        data["persona"] = {
+            'nombre': self.nombre,
+            'apellido': self.apellido,
+            'documento': self.dni,
+            'fecha': self.fecha,
+            'ciudad': self.ciudad,
+            'vacuna': self.vacuna,
+        }
+        self.data.append(self.vacunados)
+        with open('data.json', 'w') as file:
+            json.dump(self.vacunados, file, indent=12, default=str)
 
 
 class Formwindow(QMainWindow):
@@ -11,25 +56,41 @@ class Formwindow(QMainWindow):
         super().__init__()
         self.ui = Ui_form()
         self.ui.setupUi(self)
+        self.ui.label.hide()
+        self.uitabla = Ui_tabla()
+        self.vacunados = [
+            {
+                'nombre': 'h',
+                'apellido': 'Sanchez',
+                'documento': '123123123'
+            }
+        ]
+
+    """def closeEvent(self, event):
+        self.hide()
+        self.parent.show()"""
 
     def agregar(self):
-        data = {
-            'nombre': self.ui.nombreline.text(),
-            'apellido': self.ui.apellidoline.text(),
-            'documento': self.ui.dniline.text(),
-            'fecha': self.ui.fechaseleccion.date(),
-            'ciudad': self.ui.ciudadseleccion.currentText(),
-            'vacuna': self.ui.vacunaseleccion.currentText(),
-        }
-        count_before = len(self.parent.students)
-        self.parent.LATABLA.append(data)
-        print(self.parent.LATABLA)
-        if count_before != len(self.parent.LATABLA):
+
+        ciudad = self.ui.ciudadseleccion.currentText()
+        vacuna = self.ui.vacunaseleccion.currentText()
+        nombre = self.ui.nombreline.text()
+        apellido = self.ui.apellidoline.text()
+        dni = self.ui.dniline.text()
+        fecha = self.ui.fechaseleccion.date()
+        if not vacuna == "Seleccione la vacuna" and not ciudad == "seleccione ciudad" and not nombre == "" and not apellido == "" and not dni == "":
             message = QMessageBox()
-            message.setText(f"Se agrego el vacunado {data['nombre']} exitosamente")
+            message.setText("Se cargaron los datos correctamente")
             message.exec()
+        if vacuna == "Seleccione la vacuna" or ciudad == "seleccione ciudad" or nombre == "" or apellido == "" or dni == "":
+            message = QMessageBox()
+            message.setText("Termine de ingresar los datos porfavor")
+            message.exec()
+            self.uitabla.INSERTAR EN TABLA#TODO
+        Persona(ciudad, vacuna, nombre, apellido, dni, fecha)
 
     def borrar(self):
+
         self.ui.nombreline.setText("")
         self.ui.nombreline.setPlaceholderText(QCoreApplication.translate("form", u"Ingrese el nombre", None))
         self.ui.apellidoline.setInputMask("")
@@ -39,23 +100,9 @@ class Formwindow(QMainWindow):
         self.ui.dniline.setPlaceholderText(QCoreApplication.translate("form", u"Ingrese el DNI", None))
         self.ui.botonborrar.setText(QCoreApplication.translate("form", u"Borrar", None))
         self.ui.botonagregar.setText(QCoreApplication.translate("form", u"agregar", None))
-        self.ui.ciudadseleccion.setItemText(0, QCoreApplication.translate("form", u"seleccione ciudad", None))
-        self.ui.ciudadseleccion.setItemText(1, QCoreApplication.translate("form", u"La calera", None))
-        self.ui.ciudadseleccion.setItemText(2, QCoreApplication.translate("form", u"Villa allende", None))
-        self.ui.ciudadseleccion.setItemText(3, QCoreApplication.translate("form", u"Narnia", None))
-
         self.ui.ciudadseleccion.setCurrentText(QCoreApplication.translate("form", u"seleccione ciudad", None))
-        self.ui.vacunaseleccion.setItemText(0, QCoreApplication.translate("form", u"Seleccione la vacuna", None))
-        self.ui.vacunaseleccion.setItemText(1, QCoreApplication.translate("form", u"SPUTNIK V(1era dosis)", None))
-        self.ui.vacunaseleccion.setItemText(2, QCoreApplication.translate("form", u"SPUTNIK V(2da dosis)", None))
-        self.ui.vacunaseleccion.setItemText(3, QCoreApplication.translate("form", u"ASTRAZENECA(1era dosis)", None))
-        self.ui.vacunaseleccion.setItemText(4, QCoreApplication.translate("form", u"ASTRAZENECA(2da dosis)", None))
-        self.ui.vacunaseleccion.setItemText(5, QCoreApplication.translate("form", u"PFIZER(1era dosis)", None))
-        self.ui.vacunaseleccion.setItemText(6, QCoreApplication.translate("form", u"PFIZER(2da dosis)", None))
-        self.ui.vacunaseleccion.setItemText(7, QCoreApplication.translate("form", u"MODERNA(1era dosis)", None))
-        self.ui.vacunaseleccion.setItemText(8, QCoreApplication.translate("form", u"MODERNA(2da dosis)", None))
-        self.ui.vacunaseleccion.setItemText(9, QCoreApplication.translate("form", u"SINOPHARM(1era dosis) ", None))
-        self.ui.vacunaseleccion.setItemText(10, QCoreApplication.translate("form", u"SINOPHARM(2da dosis) ", None))
+        self.ui.vacunaseleccion.setCurrentText(QCoreApplication.translate("form", u"Seleccione la vacuna", None))
+        self.ui.fechaseleccion.setDate(datetime.now().date())
 
     def nombre(self):
         pass
