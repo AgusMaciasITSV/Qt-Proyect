@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainMenu_uimROcHh.ui'
+## Form generated from reading UI file 'mainMenuKdrYeb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -12,13 +12,12 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-import a_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(190, 162)
+        MainWindow.resize(181, 162)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
@@ -45,13 +44,16 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 190, 21))
+        self.menubar.setGeometry(QRect(0, 0, 181, 21))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
+        self.exitBtn.clicked.connect(MainWindow.confirmEx)
+        self.listaBtn.clicked.connect(MainWindow.openList)
+        self.formBtn.clicked.connect(MainWindow.openForm)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -61,4 +63,4 @@ class Ui_MainWindow(object):
         self.formBtn.setText(QCoreApplication.translate("MainWindow", u"A\u00f1adir ciudadano", None))
         self.listaBtn.setText(QCoreApplication.translate("MainWindow", u"Registros", None))
         self.exitBtn.setText(QCoreApplication.translate("MainWindow", u"Salir", None))
-    # retranslateU
+    # retranslateUi
