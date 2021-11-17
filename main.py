@@ -9,7 +9,7 @@ from formpro import Ui_form
 from tabla1 import Ui_tabla
 
 
-class Ui_tabla(QMainWindow):
+class Ui_table(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_tabla()
@@ -57,7 +57,7 @@ class Formwindow(QMainWindow):
         self.ui = Ui_form()
         self.ui.setupUi(self)
         self.ui.label.hide()
-        self.uitabla = Ui_tabla()
+        self.uitabla = Ui_table()
         self.vacunados = [
             {
                 'nombre': 'h',
@@ -86,7 +86,15 @@ class Formwindow(QMainWindow):
             message = QMessageBox()
             message.setText("Termine de ingresar los datos porfavor")
             message.exec()
-            self.uitabla.INSERTAR EN TABLA#TODO
+        row = self.uitabla.tableWidget.rowCount()
+        self.uitabla.tableWidget.insertRow(row)
+        persona = Persona(ciudad, vacuna, nombre, apellido, dni, fecha)
+        student_keys = list(persona.keys())
+        print(row)
+        for i in range(len(student_keys)):
+            item_to_add = self.uitabla.tableWidget()
+            self.uitabla.tableWidget.setItem(row, i, item_to_add)
+            self.uitabla.tableWidget.item(row, i).setText(persona[student_keys[i]])
         Persona(ciudad, vacuna, nombre, apellido, dni, fecha)
 
     def borrar(self):
