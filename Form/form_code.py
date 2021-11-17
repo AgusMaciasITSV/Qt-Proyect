@@ -5,8 +5,8 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidg
 import json
 from datetime import datetime
 
-from ui_files.formpro import Ui_form
-from ui_files.tabla1 import Ui_tabla
+from Form.form_code import Ui_form
+from List.caleraList import Ui_tabla
 
 
 class Ui_table(QMainWindow):
