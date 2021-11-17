@@ -8,13 +8,16 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = MenuWindow()
         self.ui.setupUi(self)
-        #self.CExit = ConfirmEx()
+        self.form = FormWindow(parent=self)
+        self.list= ListWindow(parent=self)
 
     def openForm(self):
-        pass
+        self.form.show()
+        self.ui.hide()
     
     def openList(self):
-        pass
+        self.list.show()
+        self.ui.hide()
 
     def confirmEx(self):
         confirm = QMessageBox()
@@ -32,25 +35,3 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec_())
-
-
-#         confirm = QMessageBox()
-#         confirm.setInformativeText("Esta seguro que desea salir?")
-#         confirm.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-#         confirm.setDefaultButton(QMessageBox.Yes)
-#         confirm.setText("Se eliminaran todos los alumnos")
-#         confirmation = confirm.exec()
-#         if confirmation == QMessageBox.Yes:
-#             self.close()
-# #         self.CEXit.show()
-
-# # class ConfirmEx(QMainWindow):
-# #     def salir(self):
-# #         confirm = QMessageBox()
-# #         confirm.setInformativeText("Esta seguro que desea salir?")
-# #         confirm.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-# #         confirm.setDefaultButton(QMessageBox.Yes)
-# #         #confirm.setText("Se eliminaran todos los alumnos")
-# #         confirmation = confirm.exec()
-# #         if confirmation == QMessageBox.Yes:
-# #             self.close()
