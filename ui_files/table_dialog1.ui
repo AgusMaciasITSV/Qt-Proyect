@@ -50,14 +50,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Centro de vacunacion</string>
-       </property>
-       <property name="background">
-        <color>
-         <red>255</red>
-         <green>255</green>
-         <blue>255</blue>
-        </color>
+        <string>fecha</string>
        </property>
       </column>
      </widget>

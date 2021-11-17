@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>544</width>
-    <height>188</height>
+    <height>140</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,12 +20,12 @@
       <x>0</x>
       <y>0</y>
       <width>541</width>
-      <height>186</height>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="nombreline">
        <property name="text">
         <string/>
        </property>
@@ -48,7 +48,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="dniline">
        <property name="text">
         <string/>
        </property>
@@ -57,29 +57,8 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>Borrar</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>agregar</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="2" column="0">
-      <widget class="QDateEdit" name="dateEdit"/>
-     </item>
      <item row="4" column="0">
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="ciudadseleccion">
        <property name="editable">
         <bool>false</bool>
        </property>
@@ -111,8 +90,47 @@
        </item>
       </widget>
      </item>
+     <item row="2" column="0">
+      <widget class="QDateEdit" name="fechaseleccion">
+       <property name="minimumDateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>1921</year>
+         <month>9</month>
+         <day>14</day>
+        </datetime>
+       </property>
+       <property name="maximumDate">
+        <date>
+         <year>2021</year>
+         <month>12</month>
+         <day>31</day>
+        </date>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="botonborrar">
+         <property name="text">
+          <string>Borrar</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="botonagregar">
+         <property name="text">
+          <string>agregar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="vacunaseleccion">
        <item>
         <property name="text">
          <string>Seleccione la vacuna</string>
@@ -170,6 +188,20 @@
        </item>
       </widget>
      </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
@@ -177,7 +209,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>lineEdit</sender>
+   <sender>nombreline</sender>
    <signal>textChanged(QString)</signal>
    <receiver>form</receiver>
    <slot>nombre()</slot>
@@ -209,7 +241,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>lineEdit_3</sender>
+   <sender>dniline</sender>
    <signal>textChanged(QString)</signal>
    <receiver>form</receiver>
    <slot>dni()</slot>
@@ -225,7 +257,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dateEdit</sender>
+   <sender>fechaseleccion</sender>
    <signal>timeChanged(QTime)</signal>
    <receiver>form</receiver>
    <slot>fecha()</slot>
@@ -241,7 +273,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>comboBox</sender>
+   <sender>ciudadseleccion</sender>
    <signal>highlighted(QString)</signal>
    <receiver>form</receiver>
    <slot>ciudad()</slot>
@@ -257,7 +289,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>botonborrar</sender>
    <signal>clicked()</signal>
    <receiver>form</receiver>
    <slot>borrar()</slot>
@@ -273,7 +305,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>botonagregar</sender>
    <signal>clicked()</signal>
    <receiver>form</receiver>
    <slot>agregar()</slot>
@@ -289,7 +321,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>comboBox_2</sender>
+   <sender>vacunaseleccion</sender>
    <signal>highlighted(QString)</signal>
    <receiver>form</receiver>
    <slot>dosis()</slot>

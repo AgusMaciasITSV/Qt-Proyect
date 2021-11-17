@@ -1,12 +1,12 @@
 import sys
 
 from PyQt5.QtCore import QCoreApplication
-from PySide2.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PySide2.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem
 import json
 from datetime import datetime
 
-from formpro import Ui_form
-from tabla1 import Ui_tabla
+from ui_files.formpro import Ui_form
+from ui_files.tabla1 import Ui_tabla
 
 
 class Ui_table(QMainWindow):
@@ -57,7 +57,7 @@ class Formwindow(QMainWindow):
         self.ui = Ui_form()
         self.ui.setupUi(self)
         self.ui.label.hide()
-        self.uitabla = Ui_tabla()
+        self.tabla = Ui_table()
         self.vacunados = [
             {
                 'nombre': 'h',
@@ -86,15 +86,15 @@ class Formwindow(QMainWindow):
             message = QMessageBox()
             message.setText("Termine de ingresar los datos porfavor")
             message.exec()
-        row = self.uitabla.tabla.rowCount()
-        self.uitabla.tabla.insertRow(row)
-        persona = Persona(ciudad, vacuna, nombre, apellido, dni, fecha)
-        student_keys = list(persona.keys())
+        row = int(self.tabla.ui.tableWidget.rowCount())
+        self.tabla.ui.tableWidget.insertRow(row)
+        persona = [ciudad, vacuna, nombre, apellido, dni, fecha]
+
         print(row)
-        for i in range(len(student_keys)):
-            item_to_add = self.uitabla.tableWidget()
-            self.uitabla.tabla.setItem(row, i, item_to_add)
-            self.uitabla.tabla.item(row, i).setText(persona[student_keys[i]])
+        for i in range(len(persona)):
+            item_to_add = str(persona[i])
+            print( persona[i])
+            self.tabla.ui.tableWidget.setItem(row, i, QTableWidgetItem(item_to_add))
         Persona(ciudad, vacuna, nombre, apellido, dni, fecha)
 
     def borrar(self):
